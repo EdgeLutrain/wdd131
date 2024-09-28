@@ -2,7 +2,7 @@ const themeSelector = document.querySelector("#valuetheme")
 function changeTheme(){
     const imgupdate = document.getElementsByClassName('logo')[0];
     const bodyclass = document.body.classList;
-    if (themeSelector.value === "Dark"){
+    if (themeSelector.value === "dark"){
         bodyclass.add("dark");
         imgupdate.setAttribute("src", "pic/byui-logo_white.png");
         
