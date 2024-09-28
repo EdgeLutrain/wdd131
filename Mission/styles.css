@@ -31,6 +31,15 @@ header h2 {
 
 }
 
+.dark {
+    background-color: #333;
+    color: white;
+}
+
+.dark h2 {
+    color: #A0D4ED;
+}
+
 h1,h2 {
     text-transform: uppercase;
 }
@@ -63,4 +72,15 @@ li{
 img{
     display: block;
     margin: auto;
+}
+
+
+
+select{
+color: #333;
+background-color: white;
+border-color: #333;
+padding: 8px 16px;
+border-radius: 5px;
+
 }
