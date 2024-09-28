@@ -3,7 +3,7 @@
     color: white;
 }
 
-.dark h2 {
+.dark header h2 {
     color: #A0D4ED;
 }
 
@@ -42,8 +42,6 @@ header h2 {
 
 }
 
-
-
 h1,h2 {
     text-transform: uppercase;
 }
@@ -77,8 +75,6 @@ img{
     display: block;
     margin: auto;
 }
-
-
 
 select{
 color: #333;
