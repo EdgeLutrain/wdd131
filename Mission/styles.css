@@ -1,3 +1,14 @@
+.dark {
+    background-color: #333;
+    color: white;
+}
+
+.dark h2 {
+    color: #A0D4ED;
+}
+
+
+
 body{
     font-size: 20px;
     font-family: 'Times New Roman';
@@ -31,14 +42,7 @@ header h2 {
 
 }
 
-.dark {
-    background-color: #333;
-    color: white;
-}
 
-.dark h2 {
-    color: #A0D4ED;
-}
 
 h1,h2 {
     text-transform: uppercase;
