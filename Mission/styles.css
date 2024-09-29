@@ -1,9 +1,9 @@
-.dark {
+body.dark {
     background-color: #333;
     color: white;
 }
 
-.dark header h2 {
+body.dark header h2 {
     color: #A0D4ED;
 }
 
@@ -59,7 +59,7 @@ main{
 ;
 }
 footer{
-    width: 600;
+    width: 600px;
     margin: auto;
 }
 li{
