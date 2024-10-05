@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap"); 
-@import url("https://fonts.googleapis.com/css2?family=family=Mooli&display=swap");
 :root {
 --primary-color: #52489c;
 --secondary-color: #59c3c3;
@@ -31,7 +30,6 @@ header{
     display: grid;
     justify-items: center;
     background-color: #52489c;
-    columns: -1;
     margin: 0 auto;
     
 }
@@ -65,7 +63,7 @@ h2{
 
 h4{
     margin-top: auto;
-    margin-bottom: sauto;
+    margin-bottom: auto;
     display: grid;
     justify-items: center;
  
