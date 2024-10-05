@@ -121,7 +121,7 @@ p{
     
 
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 600px){
     .gallery{
         display: grid;
         grid-template-columns: 1fr ;
