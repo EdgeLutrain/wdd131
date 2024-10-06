@@ -127,6 +127,10 @@ p{
         grid-template-columns: 1fr ;
     }
 
+    h4{
+        display: none;
+    }
+
     menu{
         display: none;
     }
