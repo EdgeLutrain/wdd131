@@ -13,7 +13,7 @@
 body{
     font-family: "Mooli", Arial, Helvetica, sans-serif;
     font-family: var(--primary-font);
-    font-size:  2vi;
+    font-size:  2vi ;
     margin: 0  auto;
 }
 
@@ -52,7 +52,7 @@ section{
     gap: .5rem;
 }
 
-h1, .menu_button, .hide{
+h1,h4{
     color: white;
 }
 
@@ -61,16 +61,11 @@ h2{
     justify-items: center;
 }
 
-button{
-    font-size: 2vi;
+h4{
     margin-top: auto;
     margin-bottom: auto;
     display: grid;
     justify-items: center;
-    background-color: transparent;
-    border: 0px;
-    padding-bottom: .75vi;
-    
  
 }
 
@@ -105,46 +100,6 @@ p{
     color: #fff;
 }
 
-.hide {
-    display: none;
-}
-.viewer {
-    display: none; 
-    position: fixed; 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; 
-}
-
-.viewer.show {
-    display: flex; 
-}
-
-.viewer img {
-    max-width: 90%;
-    max-height: 90%;
-    border: 2px solid #fff;
-}
-
-.close-viewer {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #fff;
-    color: #333;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: .5rem;
-}
-
-
-
 @media screen and (max-width: 800px){
     .gallery{
         display: grid;
@@ -172,10 +127,13 @@ p{
         grid-template-columns: 1fr ;
     }
 
-    nav{
-        padding-bottom: 5px;
+    h4{
+        display: none;
     }
 
+    menu{
+        display: none;
+    }
 
     img{
     border: .1rem solid #333;
