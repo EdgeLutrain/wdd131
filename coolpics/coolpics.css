@@ -61,7 +61,7 @@ h2{
     justify-items: center;
 }
 
-button{
+.menu_button{
     font-size: 2vi;
     margin-top: auto;
     margin-bottom: auto;
