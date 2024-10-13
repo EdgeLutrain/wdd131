@@ -1,3 +1,7 @@
+
+
+
+
 window.addEventListener('resize', () => {
     const windowWidth = window.innerWidth;
     const pictureUpdate = document.getElementById("myImage");
@@ -61,6 +65,8 @@ function closeViewer() {
 
 function initializeGallery() {
     const galleryImages = document.querySelectorAll('.gallery img');
+    const pictureUpdate = document.getElementById("myImage");
+    pictureUpdate.src = "pictures/norris-full.jpeg"; 
     
     if (galleryImages.length > 0) {
         galleryImages.forEach((image) => {
