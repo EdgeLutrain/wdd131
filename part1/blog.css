@@ -49,7 +49,7 @@ nav {
 main {
 
     margin: auto;
-    max-width: 80rem;
+    max-width: 95rem;
     padding: 1.25rem;
     padding-top: 3rem;
     display: flex;
@@ -75,6 +75,7 @@ main {
     width: 20%;
     max-height: 70rem;
     align-items: flex-end;
+    padding-top: .8rem;
 }
 
 .book_summary {
@@ -159,3 +160,19 @@ footer {
     border: none;
     margin: 0 10px;
 }
+
+.skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: #fff;
+    color: #000;
+    padding: 8px;
+    text-decoration: none;
+    border: 1px solid #000;
+    z-index: 100;
+  }
+  
+  .skiptocontent a:focus {
+    top: 0;
+  }
