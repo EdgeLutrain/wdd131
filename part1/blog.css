@@ -146,6 +146,8 @@ main {
     font-size: 0.7rem;
     line-height: 1.6;
     border-left: 0rem;
+    text-align: left;
+    align-items: flex-start;
     
 }
 
