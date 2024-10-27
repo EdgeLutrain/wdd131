@@ -17,7 +17,7 @@ header {
     border-bottom: 0.125rem solid #ccc;
 }
 
-.main_container {
+.searchandfilter {
     display: flex;
     width: 100%;
 }
@@ -55,14 +55,13 @@ nav {
 }
 
 main {
-
+    display: flex;
     margin-left: 5rem;
     margin-right: 5rem;
     max-width: 95rem;
     padding: 5rem;
     padding-top: 3rem;
-    display: flex;
-    justify-content: center
+    justify-content: center;
 
 }
 
