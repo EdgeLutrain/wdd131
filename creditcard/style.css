@@ -69,7 +69,7 @@ body {
 
 .input-group {
     
-    gap: 10px; /* Space between month and year inputs */
+    gap: 10px; 
 
 }
 
@@ -158,7 +158,7 @@ input {
 }
 
 #expiry-month, #expiry-year {
-    width: 45%; /* Each input takes about half of the available space */
+    width: 45%; 
     display: inline-block;
     justify-content: center;
 }
