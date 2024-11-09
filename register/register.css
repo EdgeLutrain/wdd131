@@ -160,3 +160,28 @@
     }
   }
   
+  
+.participants {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px; 
+}
+
+.participants > section {
+    border: 1px solid #ccc;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+
+#add {
+    grid-column: span 2; 
+    margin-top: 16px; 
+}
+
+@media (max-width: 768px) {
+    .participants {
+        grid-template-columns: 1fr; 
+    }
+}
