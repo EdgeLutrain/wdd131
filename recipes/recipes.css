@@ -1,0 +1,217 @@
+/* styles.css */
+
+ @import url("https://fonts.googleapis.com/css2?family=family=Amatic+SC&display=swap");
+ :root {
+ --primary-color: #1B98E0;
+ --secondary-color: #59c3c3;
+ --text-dark: #333;
+ --text-light: #ebebeb;
+ --primary-font: Arial, Helvetica,sans-serif;
+ --secondary-font: "Amatic SC";
+ }
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+.recipe-book {
+    width: 75%; 
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  header {
+    margin: 1.25rem 0; 
+  }
+  
+  .logo {
+    font-size: 4rem; 
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.625rem 0; 
+  }
+  
+  .search-input {
+    max-height: 1rem;
+    padding: 0.3125rem; 
+    border: 0.0625rem solid #ccc; 
+    border-radius: 0.3125rem; 
+    width: 100%;
+  }
+  
+  .search-button {
+    max-height: 1.7rem;
+    padding: 0.3125rem;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    font-size: 1rem; /* 16px */
+    cursor: pointer;
+    border: .05rem solid #414141;
+    border-radius: .1rem;
+  }
+
+  .search_but_img {
+    max-width: 1rem;
+  }
+  
+  main {
+    margin: 1.25rem 0; /* 20px */
+  }
+  
+  .recipe-card {
+    border: 0.0625rem solid #a5a5a5; /* 1px */
+    border-radius: 0.625rem; /* 10px */
+    background-color: white;
+    padding: 0.625rem; /* 10px */
+    display: flex;
+    gap: .5rem;
+  }
+  .Info_Catgorery_Rating_Sections{
+    display: flex;
+    flex-direction: column;
+  }
+  .img_box_recipe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .recipe-image {
+    width: 100%;
+    border-radius: 0.625rem; 
+  }
+
+  .name_and_rating {
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .recipe-category {
+    display: flex;
+  }
+  
+  .recipe-category_box {
+    border: 0.0625rem solid #414141; /* 1px */
+    font-size: 1.1rem; /* 12px */
+    font-weight: bold;
+    color: #414141;
+    padding: 0.3rem; /* 1px */
+    
+    display: inline-flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: .2rem;
+  }
+  
+  .recipe-title {
+    font-size: 1.3rem; /* 18px */
+    margin: 0.25rem 0; /* 10px */
+    text-decoration: none;
+  }
+  .description{
+    text-align: left;
+    font-size: .75rem;
+  }
+  .recipe-rating {
+    font-size: 0.875rem; /* 14px */
+    color: #FFD700;
+  }
+  
+  footer {
+    margin-top: 1.25rem; /* 20px */
+    font-size: 0.75rem; /* 12px */
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+  
+  .icon-credits {
+    margin-bottom: 0.625rem; /* 10px */
+    text-decoration: none;
+  }
+
+
+  .flaticon {
+    width: 2rem;
+  }
+
+  .img_logo {
+    max-width: 6rem; /* 36px */
+    max-height: 6rem; /* 36px */
+   }
+  
+  .main_header_logo {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+
+  
+
+  @media only screen and (max-width: 600px) {
+
+    .recipe-card {
+        border: 0.0625rem solid #a5a5a5; /* 1px */
+        border-radius: 0.625rem; /* 10px */
+        background-color: white;
+        padding: 0.625rem; /* 10px */
+        display: flex;
+        flex-direction: column;
+      }
+    .name_and_rating {
+        display: flex;
+        align-content: flex-start;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+    .icon-credits {
+        margin-bottom: 0.625rem; /* 10px */
+      }
+      .recipe-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.625rem; /* 10px */
+      }
+    
+    .flaticon {
+        max-width: 1.125rem; /* 18px */
+      }
+    footer {
+        margin-top: 1.25rem; /* 20px */
+        font-size: 0.75rem; /* 12px */
+        color: gray;
+        display: flex;
+        flex-direction: column;
+      }
+      .logo {
+        font-size: 2rem; /* 24px */
+        font-weight: bold;
+      }
+      .img_logo {
+        max-width: 3rem; /* 36px */
+        max-height: 3rem; /* 36px */
+       }
+        .description {
+        display: none;
+      }
+  }
+  
+  @media only screen and (min-width: 960px) {
+    body {
+      max-width: 60rem; /* 960px */
+      margin: 0 auto;
+    }
+  }
