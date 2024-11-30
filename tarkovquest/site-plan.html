@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<title>Site Plan</title>
 		<link type="text/css" rel="stylesheet" href="site-plan.css" />
+
 	</head>
 
 	<body>
@@ -34,7 +35,7 @@
 			<h2>Branding</h2>
 			<h3>Website Logo</h3>
 			<!-- Replace this with some sort of logo for your site.  A logo can be as simple as the name of your site in a nice font :) -->
-			<img src="image/a590e1947eb3475886561d3f9cd3191c-free.png" alt="The Guide to Escape From Tarkov" />
+			<img src="image/logo.png" alt="The Guide to Escape From Tarkov" />
 			<hr />
 			<h2>Style Guide</h2>
 
@@ -113,9 +114,64 @@
 
 			<h2>Content</h2>
 			<h3>Home page</h3>
+            <p>The home page will just have these main quest givers so that they can click on an individual 1 and it will still take him to page 2 but immediately filter for that quest giver only and all their quest. It will give us sort explanation what the site's goal is to do and how to use it and what you can look up. And then we'll put a search bar at the bottom so that if they don't click on the page button, they can type search and it'll bring them to page 2.
+
+            </p>
+            <div class="trader">
+                <img src="https://assets.tarkov.dev/54cb50c76803fa8b248b4571.webp" alt="Prapor">
+                <span>Prapor</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/54cb57776803fa99248b456e.webp" alt="Therapist">
+                <span>Therapist</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/579dc571d53a0658a154fbec.webp" alt="Fence">
+                <span>Fence</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/58330581ace78e27b8b10cee.webp" alt="Skier">
+                <span>Skier</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/5935c25fb3acc3127c3d8cd9.webp" alt="Peacekeeper">
+                <span>Peacekeeper</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/5a7c2eca46aef81a7ca2145d.webp" alt="Mechanic">
+                <span>Mechanic</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/5ac3b934156ae10c4430e83c.webp" alt="Ragman">
+                <span>Ragman</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/5c0647fdd443bc2504c2d371.webp" alt="Jaeger">
+                <span>Jaeger</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/638f541a29ffd1183d187f57.webp" alt="Lightkeeper">
+                <span>Lightkeeper</span>
+              </div>
+            
+              <div class="trader">
+                <img src="https://assets.tarkov.dev/6617beeaa9cfa777ca915b7c.webp" alt="Ref">
+                <span>Ref</span>
+              </div>
 			<p></p>
 			<h3>[Page 2]</h3>
-			<p>[content, images, data for the subpage]</p>
+			<p>The second page will just be a search engine essentially in the sense how we did it with the recipe data. The grateful thing is I'll have a reference to the information where I'm pulling it from is an open source database for the game that allows you to generate queries. For that query I'll have a data page that we can export and just use as the search engine.</p>
+            <a href="referpage.js">JS of all the Quests</a>
+            <a href="https://api.tarkov.dev/">The Query Site from the open source project of Tarkov Dev</a>
+            <a href="https://tarkov.dev/api/"> Tarkov Dev API Page</a>
 			<h2>Wireframes</h2>
 			<p>
 				Create two wireframes for your site. One for each page and list them
@@ -124,17 +180,15 @@
 
 			<h3>Home</h3>
 			<p>
-				[Any additional details about home that the wireframe does not make
-				clear]
+                So for the home page the principal is the top section is just an explanation of how this site works that you can Click to filter automatically by the trader you click on or you can scroll to the bottom and search what you're looking for. Or explained you can Click to the second page to begin your search or filter.
 			</p>
-			<img src="#" alt="home page wireframe" />
+			<img src="image/home.png" alt="home page wireframe" />
 
 			<h3>[Page 2]</h3>
 			<p>
-				[Any additional details about page 2 that the wireframe does not make
-				clear]
-			</p>
-			<img src="#" alt="page 2 wireframe" />
+                So we have two separate bars. One is the search, and the other would be like a list of standard filters they would want to go through, which would be traders' required quest to get to the end of the game or unlock a specific trader. As you see in the boxes, they represent what a search would generally look like. We will show the quest name of the trader that's giving it. They all have images associated with them, so we'll display the image. Like the list of tasks that they're asked to complete, which will provide a challenge because you would need to adjust the box size because some quests have a lot of requirements. Then we'll display the rewards, which can come in two forms: items given to barters unlocked, meaning you can buy stuff from a trader now, or things you can craft.
+
+			<img src="image/page2.png" alt="page 2 wireframe" />
 		</main>
 	</body>
 </html>
