@@ -1,6 +1,6 @@
 import recipes from './recipes.mjs';
 
-// Random and Utility Functions
+
 function random(num) {
     return Math.floor(Math.random() * num);
 }
@@ -11,7 +11,7 @@ function getRandomItem(list) {
     return list[randomNum];
 }
 
-// Template Functions
+
 function tagsTemplate(tags) {
     return tags.map(tag => `<p class="recipe-category_box">${tag}</p>`).join('');
 }
@@ -54,7 +54,7 @@ function recipeTemplate(recipe) {
     </div>`;
 }
 
-// Filtering and Rendering Functions
+
 function filterRecipes(query) {
     return recipes
         .filter(recipe => {
@@ -63,10 +63,10 @@ function filterRecipes(query) {
                 recipe.name.toLowerCase().includes(lowerQuery) ||
                 recipe.description.toLowerCase().includes(lowerQuery) ||
                 recipe.tags.find(tag => tag.toLowerCase().includes(lowerQuery)) ||
-                recipe.ingredients?.find(ingredient => ingredient.toLowerCase().includes(lowerQuery)) // Optional ingredients list
+                recipe.ingredients?.find(ingredient => ingredient.toLowerCase().includes(lowerQuery)) 
             );
         })
-        .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
+        .sort((a, b) => a.name.localeCompare(b.name)); 
 }
 
 function renderRecipes(recipesList) {
@@ -78,19 +78,19 @@ function renderRecipes(recipesList) {
     }
 }
 
-// Search Handler
+
 function searchHandler(e) {
-    e.preventDefault(); // Prevent form submission default behavior
+    e.preventDefault(); 
     const searchInput = document.querySelector('.search-input');
     const query = searchInput.value.toLowerCase();
     const filteredRecipes = filterRecipes(query);
     renderRecipes(filteredRecipes);
 }
 
-// Event Listener
+
 const searchButton = document.querySelector('.search-button');
 searchButton.addEventListener('click', searchHandler);
 
-// Initial Render of a Random Recipe
+
 const randomRecipe = getRandomItem(recipes);
 renderRecipes([randomRecipe]);
