@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarkov Tasks</title>
+    <link rel="stylesheet" href="test.css">
+    <script src="test.js" defer></script>
+</head>
+<body>
+
+    <div id="tasks-container" class="container">
+        <h1>Escape from Tarkov: Tasks</h1>
+        <div class="filters">
+            <input type="text" id="search-input" placeholder="Search tasks..." />
+            <label>
+                <input type="checkbox" id="filter-kappa" />
+                Kappa Required
+            </label>
+            <label>
+                <input type="checkbox" id="filter-lightkeeper" />
+                Lightkeeper Required
+            </label>
+        </div>
+        <div id="loading">Loading tasks...</div>
+        <div id="task-list" class="task-list"></div>
+    </div>
+    
+    
+ 
+</body>
+</html>
