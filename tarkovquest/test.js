@@ -63,6 +63,7 @@ fetch('https://api.tarkov.dev/graphql', {
                 taskImageLink
                 trader {
                     name
+                    imageLink
                 }
             }
         }`,
@@ -98,11 +99,20 @@ function renderTasks(taskList) {
 
         // Build HTML for a single task
         taskElement.innerHTML = `
-            <h2>${task.name}</h2>
-            <img src="${task.taskImageLink}" alt="${task.name}" class="task-image">
+            <div class="questname">
+                <div class="questtitle"> 
+                <h2>${task.name}</h2>
+                <img src="${task.taskImageLink}" alt="${task.name}" class="task-image">
+                </div>
+                <div class="trader-giver">
+                <img src="${task.trader.imageLink}">
+                <p><strong>Trader:</strong> ${task.trader ? task.trader.name : 'None'}</p>
+                </div> 
+                
+            </div>
             <p><strong>Faction:</strong> ${task.factionName}</p>
             <p><strong>Experience:</strong> ${task.experience} EXP</p>
-            <p><strong>Trader:</strong> ${task.trader ? task.trader.name : 'None'}</p>
+            
             <p><strong>Kappa Required:</strong> ${task.kappaRequired ? 'Yes' : 'No'}</p>
             <p><strong>Lightkeeper Required:</strong> ${task.lightkeeperRequired ? 'Yes' : 'No'}</p>
             <h3>Objectives</h3>
