@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     background: white;
     border-radius: 10px;
@@ -42,7 +42,55 @@ h1 {
 .task {
     display: grid;
     border: 5px inset var(--primary-color) ;
-    padding: 15px 0;
+    padding: 20px 17px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 1fr 1fr;
+}
+
+.questplusinfo{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+.rewardbox{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+.objinfo{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
+}
+
+h3 {
+    margin: 3px 0;
+}
+
+.objinfo ul li {
+    padding: 6px 0;
+}
+
+.objinfo ul{
+    margin: 4px 0;
 }
 
 .task:last-child {
@@ -55,12 +103,12 @@ h1 {
 }
 
 .task p {
-    margin: 5px 0;
+    margin: 0;
     line-height: 1.5;
 }
 
 .task .task-image{
-    max-width: 300px;
+    width: 220px;
 }
 .task .reward-item {
     display: flex;
@@ -69,10 +117,10 @@ h1 {
 }
 
 .task .reward-item img {
-    width: 40px;
-    height: 40px;
+    width: 63.9975px;
+    height: 39.9975px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 #search-input {
@@ -85,10 +133,29 @@ h1 {
 }
 
 .questname {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     max-height: 400px;
+    gap: 10px;
+}
+
+.taskheader{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 100px;
+
 }
 
 .questtitle{
@@ -96,6 +163,10 @@ h1 {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -104,6 +175,10 @@ h1 {
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .trader-giver img {

@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css?family=IM+Fell+French+Canon+SC|Lato");
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 
 :root {
   --primary-color: #9a8866;
   --secondary-color: #16191A;
-  --accent1-color: #a19e91;
+  --accent1-color: #b19e6d;
   --accent2-color: #000000;
-
+  --opcical1-color: rgba(177, 158, 109, 0.35);
+  --opcical2-color: rgba(22, 25, 26, 0.7);
   --heading-font: 'Aldrich', sans-serif;
-  --paragraph-font: 'Lato', Helvetica, sans-serif;
+  --paragraph-font: Tahoma, Helvetica, sans-serif;
 }
 
 * {
@@ -26,7 +26,7 @@ body {
 
 .container {
   display: flex;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
@@ -78,9 +78,10 @@ body {
 
 .instructions h2 {
   font-family: var(--heading-font);
+  color: var(--secondary-color);
   font-size: 20px;
   margin-bottom: 10px;
-  color: var(--secondary-color);
+  
 }
 
 .instructions p {
@@ -189,3 +190,227 @@ body {
 }
 
 
+/* page 2 */
+
+.task {
+  display: grid;
+  border: 5px inset var(--primary-color) ;
+  padding: 20px 17px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 1fr 1fr;
+  background-color: var(--accent2-color);
+  color: var(--accent1-color);
+}
+
+
+
+.questplusinfo{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+.rewardbox{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+.objinfo{
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
+  gap: 3px;
+  padding: 0 20px;
+  margin: 0 20px;
+}
+
+.task h3 {
+  margin: 3px 0;
+  font-family: var(--heading-font);
+}
+
+.objinfo ul li {
+  padding: 6px 10px;
+}
+
+.objinfo ul{
+  display: flex ;
+  flex-direction: column;
+  
+}
+
+
+
+.task h2 {
+  margin: 0;
+  font-family: var(--heading-font);
+  color: var(--accent1-color);
+}
+
+.task p {
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--paragraph-font);
+}
+
+.task .task-image{
+  width: 231px;
+}
+.task .reward-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.task .reward-item img {
+  width: 63.9975px;
+  height: 39.9975px;
+  margin-right: 10px;
+  border-radius: 0px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.questname {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: center;
+  max-height: 400px;
+  
+}
+
+.taskheader{
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100px;
+  background-color: var(--opcical2-color);
+  border: 3px inset var(--opcical1-color);
+  margin: 10px 0;
+
+}
+
+.questtitle{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.questtitle img {
+  border: 3px  solid var(--opcical1-color);
+  border-left: 0px;
+
+}
+
+.trader-giver{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--opcical1-color);
+  padding: 3px;
+  
+}
+
+.trader-giver img {
+  max-width: 64px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#filter-kappa,
+#filter-lightkeeper {
+  margin-right: 5px;
+}
+
+
+.task-list {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+  flex-direction: column;
+
+
+}
+.foward-and-back-butt{
+  width: 32px;
+  border: 3px inset var(--opcical1-color);
+  color: var(--accent1-color);
+  background-color: var(--accent2-color);
+}
+
+#search-input{
+
+}
+
+.pagination-controls{
+  margin: auto 0;
+  padding: 15px 0;
+}
+
+#tasks-per-page-input{
+  width: 40px;
+  border: 3px inset var(--opcical1-color);
+  color: var(--accent1-color);
+  background-color: var(--accent2-color);
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

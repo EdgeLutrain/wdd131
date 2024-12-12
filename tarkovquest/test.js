@@ -1,4 +1,6 @@
 let tasks = []; // To store all tasks for filtering
+let currentPage = 1; // Track the current page
+let tasksPerPage = 15; // Number of tasks to display per page
 
 // Fetch and display tasks from Tarkov API
 fetch('https://api.tarkov.dev/graphql', {
@@ -75,7 +77,7 @@ fetch('https://api.tarkov.dev/graphql', {
         loading.style.display = 'none'; // Hide the loading message
 
         tasks = data.data.tasks; // Save tasks for search
-        renderTasks(tasks); // Initial render
+        renderPaginatedTasks(); // Initial render
     })
     .catch((error) => {
         console.error('Error fetching data:', error);
@@ -97,51 +99,59 @@ function renderTasks(taskList) {
         const taskElement = document.createElement('div');
         taskElement.classList.add('task');
 
-        // Build HTML for a single task
+        // Safely access properties
+        const traderName = task.trader?.name || 'None';
+        const traderImage = task.trader?.imageLink || 'default-trader.png';
+
         taskElement.innerHTML = `
+            <div class="taskheader"><h2>${task.name}</h2></div>
             <div class="questname">
                 <div class="questtitle"> 
-                <h2>${task.name}</h2>
-                <img src="${task.taskImageLink}" alt="${task.name}" class="task-image">
+                    <img src="${task.taskImageLink || 'default-task.png'}" alt="${task.name}" class="task-image">
                 </div>
                 <div class="trader-giver">
-                <img src="${task.trader.imageLink}">
-                <p><strong>Trader:</strong> ${task.trader ? task.trader.name : 'None'}</p>
-                </div> 
-                
+                    <img src="${traderImage}" alt="${traderName}">
+                    <h3>Trader</h3>
+                    <p>${traderName}</p>
+                </div>  
             </div>
-            <p><strong>Faction:</strong> ${task.factionName}</p>
-            <p><strong>Experience:</strong> ${task.experience} EXP</p>
-            
-            <p><strong>Kappa Required:</strong> ${task.kappaRequired ? 'Yes' : 'No'}</p>
-            <p><strong>Lightkeeper Required:</strong> ${task.lightkeeperRequired ? 'Yes' : 'No'}</p>
-            <h3>Objectives</h3>
-            <ul>
-                ${task.objectives
-                    .map(
-                        (obj) =>
-                            `<li>${obj.description}${
-                                obj.maps.length
-                                    ? ` (Maps: ${obj.maps
-                                          .map((map) => map.name)
-                                          .join(', ')})`
-                                    : ''
-                            }</li>`
-                    )
-                    .join('')}
-            </ul>
-            <h3>Rewards</h3>
-            <div>
-                ${task.finishRewards.items
-                    .map(
-                        (reward) => `
-                        <div class="reward-item">
-                            <img src="${reward.item.imageLink}" alt="${reward.item.name}">
-                            <span>${reward.quantity}x ${reward.item.name}</span>
-                        </div>
-                    `
-                    )
-                    .join('')}
+            <div class="questplusinfo">
+                <p>Faction: ${task.factionName || 'Unknown'}</p>
+                <p>Kappa Required: ${task.kappaRequired ? 'Yes' : 'No'}</p>
+                <p>Lightkeeper Required: ${task.lightkeeperRequired ? 'Yes' : 'No'}</p>
+            </div>
+            <div class="objinfo">
+                <h3>Objectives</h3>
+                <ul>
+                    ${task.objectives
+                        ?.map(
+                            (obj) =>
+                                `<li>${obj.description || 'No description available'}${
+                                    obj.maps?.length
+                                        ? ` (Maps: ${obj.maps.map((map) => map.name).join(', ')})`
+                                        : ''
+                                }</li>`
+                        )
+                        .join('') || '<li>No objectives listed.</li>'}
+                </ul>
+            </div>
+            <div class="rewardbox">
+                <h3>Rewards</h3>
+                <p>Experience: ${task.experience || 0} EXP</p>
+                <div>
+                    ${
+                        task.finishRewards?.items
+                            ?.map(
+                                (reward) => `
+                            <div class="reward-item">
+                                <img src="${reward.item?.imageLink || 'default-reward.png'}" alt="${reward.item?.name || 'Reward'}">
+                                <span>${reward.quantity || 0} x ${reward.item?.name || 'Unknown'}</span>
+                            </div>
+                        `
+                            )
+                            .join('') || '<p>No rewards listed.</p>'
+                    }
+                </div>
             </div>
         `;
 
@@ -149,7 +159,55 @@ function renderTasks(taskList) {
     });
 }
 
-// Filter tasks based on search and checkboxes
+// Function to render paginated tasks
+function renderPaginatedTasks() {
+    const tasksContainer = document.getElementById('task-list');
+    tasksContainer.innerHTML = ''; // Clear existing tasks
+
+    const startIndex = (currentPage - 1) * tasksPerPage;
+    const endIndex = startIndex + tasksPerPage;
+    const paginatedTasks = tasks.slice(startIndex, endIndex); // Get tasks for the current page
+
+    if (paginatedTasks.length === 0) {
+        tasksContainer.innerHTML = '<p>No tasks found.</p>';
+        return;
+    }
+
+    // Render tasks for the current page
+    renderTasks(paginatedTasks);
+
+    // Render pagination controls
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = `
+        <button class="foward-and-back-butt"${currentPage === 1 ? 'disabled' : ''} onclick="changePage(-1)"> \< </button>
+        <span>Page ${currentPage} of ${Math.ceil(tasks.length / tasksPerPage)}</span>
+        <button class="foward-and-back-butt"${currentPage === Math.ceil(tasks.length / tasksPerPage) ? 'disabled' : ''} onclick="changePage(1)"> \> </button>
+        <label>
+            Tasks per page:
+            <input type="number" id="tasks-per-page-input" value="${tasksPerPage}" min="1" max="100" onchange="updateTasksPerPage()">
+        </label>
+    `;
+}
+
+// Function to change the page
+function changePage(direction) {
+    currentPage += direction;
+    renderPaginatedTasks();
+}
+
+// Function to update the number of tasks displayed per page
+function updateTasksPerPage() {
+    const input = document.getElementById('tasks-per-page-input');
+    const newTasksPerPage = parseInt(input.value, 10);
+
+    if (!isNaN(newTasksPerPage) && newTasksPerPage > 0) {
+        tasksPerPage = newTasksPerPage;
+        currentPage = 1; // Reset to the first page
+        renderPaginatedTasks();
+    }
+}
+
+// Attach event listeners for search and filter
 function filterTasks() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
     const kappaRequired = document.getElementById('filter-kappa').checked;
@@ -168,10 +226,8 @@ function filterTasks() {
         return matchesSearch && matchesKappa && matchesLightkeeper;
     });
 
-    renderTasks(filteredTasks);
+    tasks = filteredTasks; // Update tasks with the filtered list
+    currentPage = 1; // Reset to the first page
+    renderPaginatedTasks();
 }
 
-// Attach event listeners for search and filter
-document.getElementById('search-input').addEventListener('input', filterTasks);
-document.getElementById('filter-kappa').addEventListener('change', filterTasks);
-document.getElementById('filter-lightkeeper').addEventListener('change', filterTasks);
