@@ -20,7 +20,7 @@
     <header class="header">
         <div class="logoandtitle">
             <h1>The Guide to Tarkov</h1>
-            <img src="image/the_guide_to_tarkov_logo.png" alt="The Guide to Trakov "> 
+            <img src="image/the_guide_to_tarkov_logo.png" alt="The Guide to Tarkov"> 
         </div>
 
         <nav class="navbar">
@@ -30,7 +30,6 @@
     </header>
         
     <div id="tasks-container" class="container">
-       
         <div class="filters">
             <input type="text" id="search-input" placeholder="Search tasks..." />
             <label>
@@ -41,13 +40,21 @@
                 <input type="checkbox" id="filter-lightkeeper" />
                 Lightkeeper Required
             </label>
+            <button id="search-button">Search</button>
         </div>
         <div id="loading">Loading tasks...</div>
         <div id="task-list" class="task-list"></div>
         <div id="pagination" class="pagination-controls"></div>
     </div>
     
-    
- 
+    <footer class="footer">
+        <div class="disclosure">
+            <a class="info_box" href="https://tarkov.dev/">
+                <img src="https://tarkov.dev/favicon-32x32.png" alt="Tarkov Dev Logo"> 
+                <h2>Tarkov.Dev</h2> 
+            </a>
+            <p>All Data is Sourced From Tarkov.Devs API. Please check them and out as open source project!</p>
+        </div>
+    </footer>
 </body>
 </html>

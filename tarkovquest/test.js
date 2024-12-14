@@ -1,8 +1,10 @@
-let tasks = []; // To store all tasks for filtering
-let currentPage = 1; // Track the current page
+// Global variables
+let tasks = []; // To store all tasks fetched from the API
+let filteredTasks = []; // To store filtered tasks for rendering
+let currentPage = 1; // Track the current page globally
 let tasksPerPage = 15; // Number of tasks to display per page
 
-// Fetch and display tasks from Tarkov API
+// Fetch and display tasks from the Tarkov API
 fetch('https://api.tarkov.dev/graphql', {
     method: 'POST',
     headers: {
@@ -76,7 +78,8 @@ fetch('https://api.tarkov.dev/graphql', {
         const loading = document.getElementById('loading');
         loading.style.display = 'none'; // Hide the loading message
 
-        tasks = data.data.tasks; // Save tasks for search
+        tasks = data.data.tasks; // Save tasks for search and filtering
+        filteredTasks = tasks; // Initially, show all tasks
         renderPaginatedTasks(); // Initial render
     })
     .catch((error) => {
@@ -85,7 +88,7 @@ fetch('https://api.tarkov.dev/graphql', {
         tasksContainer.innerHTML = '<p>Failed to load tasks. Please try again later.</p>';
     });
 
-// Render tasks dynamically
+// Function to render tasks dynamically
 function renderTasks(taskList) {
     const tasksContainer = document.getElementById('task-list');
     tasksContainer.innerHTML = ''; // Clear existing tasks
@@ -166,22 +169,20 @@ function renderPaginatedTasks() {
 
     const startIndex = (currentPage - 1) * tasksPerPage;
     const endIndex = startIndex + tasksPerPage;
-    const paginatedTasks = tasks.slice(startIndex, endIndex); // Get tasks for the current page
+    const paginatedTasks = filteredTasks.slice(startIndex, endIndex); // Use filteredTasks for display
 
     if (paginatedTasks.length === 0) {
         tasksContainer.innerHTML = '<p>No tasks found.</p>';
         return;
     }
 
-    // Render tasks for the current page
     renderTasks(paginatedTasks);
 
-    // Render pagination controls
     const paginationContainer = document.getElementById('pagination');
     paginationContainer.innerHTML = `
         <button class="foward-and-back-butt"${currentPage === 1 ? 'disabled' : ''} onclick="changePage(-1)"> \< </button>
-        <span>Page ${currentPage} of ${Math.ceil(tasks.length / tasksPerPage)}</span>
-        <button class="foward-and-back-butt"${currentPage === Math.ceil(tasks.length / tasksPerPage) ? 'disabled' : ''} onclick="changePage(1)"> \> </button>
+        <span>Page ${currentPage} of ${Math.ceil(filteredTasks.length / tasksPerPage)}</span>
+        <button class="foward-and-back-butt"${currentPage === Math.ceil(filteredTasks.length / tasksPerPage) ? 'disabled' : ''} onclick="changePage(1)"> \> </button>
         <label>
             Tasks per page:
             <input type="number" id="tasks-per-page-input" value="${tasksPerPage}" min="1" max="100" onchange="updateTasksPerPage()">
@@ -207,17 +208,16 @@ function updateTasksPerPage() {
     }
 }
 
-// Attach event listeners for search and filter
+// Function to filter tasks
 function filterTasks() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
     const kappaRequired = document.getElementById('filter-kappa').checked;
     const lightkeeperRequired = document.getElementById('filter-lightkeeper').checked;
 
     // Filter tasks
-    const filteredTasks = tasks.filter((task) => {
+    filteredTasks = tasks.filter((task) => {
         const matchesSearch =
             task.name.toLowerCase().includes(searchQuery) ||
-            task.factionName.toLowerCase().includes(searchQuery) ||
             (task.trader?.name.toLowerCase() || '').includes(searchQuery);
 
         const matchesKappa = kappaRequired ? task.kappaRequired : true;
@@ -226,8 +226,9 @@ function filterTasks() {
         return matchesSearch && matchesKappa && matchesLightkeeper;
     });
 
-    tasks = filteredTasks; // Update tasks with the filtered list
     currentPage = 1; // Reset to the first page
     renderPaginatedTasks();
 }
 
+// Add event listener for search button
+document.getElementById('search-button').addEventListener('click', filterTasks);
