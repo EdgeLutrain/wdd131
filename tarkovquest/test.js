@@ -5,88 +5,119 @@ let currentPage = 1; // Track the current page globally
 let tasksPerPage = 10; // Number of tasks to display per page
 
 // Fetch and display tasks from the Tarkov API
-fetch('https://api.tarkov.dev/graphql', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    },
-    body: JSON.stringify({
-        query: `{
-            tasks {
-                name
-                objectives {
-                    description
-                    maps {
-                        name
-                    }
-                    optional
-                }
-                restartable
-                startRewards {
-                    items {
-                        quantity
-                        count
-                        item {
-                            name
-                            imageLink
-                        }
-                    }
-                    offerUnlock {
-                        item {
-                            name
-                            imageLink
-                        }
-                    }
-                    skillLevelReward {
-                        name
-                        skill {
-                            name
-                        }
-                        level
-                    }
-                }
-                finishRewards {
-                    items {
-                        item {
-                            name
-                            imageLink
-                        }
-                        quantity
-                        count
-                    }
-                }
-                failConditions {
-                    description
-                }
-                factionName
-                experience
-                availableDelaySecondsMin
-                kappaRequired
-                lightkeeperRequired
-                taskImageLink
-                trader {
-                    name
-                    imageLink
-                }
-            }
-        }` 
-    }),
-})
-.then((response) => response.json())
-.then((data) => {
-    const loading = document.getElementById('loading');
-    loading.style.display = 'none'; // Hide the loading message
+async function fetchTasks() {
+    try {
+        // Show the loading message
+        const loading = document.getElementById('loading');
+        loading.style.display = 'block';
 
-    tasks = data.data.tasks; // Save tasks for search and filtering
-    filteredTasks = tasks; // Initially, show all tasks
-    renderPaginatedTasks(); // Initial render
-})
-.catch((error) => {
-    console.error('Error fetching data:', error);
-    const tasksContainer = document.getElementById('tasks-container');
-    tasksContainer.innerHTML = '<p>Failed to load tasks. Please try again later.</p>';
-});
+        const response = await fetch('https://api.tarkov.dev/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                query: `{
+                    tasks {
+                        name
+                        objectives {
+                            description
+                            maps {
+                                name
+                            }
+                            optional
+                        }
+                        restartable
+                        startRewards {
+                            items {
+                                quantity
+                                count
+                                item {
+                                    name
+                                    imageLink
+                                }
+                            }
+                            offerUnlock {
+                                item {
+                                    name
+                                    imageLink
+                                }
+                            }
+                            skillLevelReward {
+                                name
+                                skill {
+                                    name
+                                }
+                                level
+                            }
+                        }
+                        finishRewards {
+                            items {
+                                item {
+                                    name
+                                    imageLink
+                                }
+                                quantity
+                                count
+                            }
+                        }
+                        failConditions {
+                            description
+                        }
+                        factionName
+                        experience
+                        availableDelaySecondsMin
+                        kappaRequired
+                        lightkeeperRequired
+                        taskImageLink
+                        trader {
+                            name
+                            imageLink
+                        }
+                    }
+                }`,
+            }),
+        });
+
+        const data = await response.json();
+        tasks = data.data.tasks; // Save tasks for search and filtering
+        filteredTasks = tasks; // Initially, show all tasks
+        console.log("Tasks fetched successfully:", tasks);
+
+        // After tasks are fetched, execute the search
+        handleSearchOnLoad();
+
+        // Hide the loading message
+        loading.style.display = 'none';
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        const tasksContainer = document.getElementById('tasks-container');
+        tasksContainer.innerHTML = '<p>Failed to load tasks. Please try again later.</p>';
+
+        // Hide the loading message in case of error
+        const loading = document.getElementById('loading');
+        loading.style.display = 'none';
+    }
+}
+
+// Function to handle search after tasks have loaded
+function handleSearchOnLoad() {
+    const selectedCardId = localStorage.getItem('selectedCardId');
+
+    if (selectedCardId) {
+        console.log(`Retrieved ID from localStorage in test.js: ${selectedCardId}`);
+
+        // Set the search input field value to the selectedCardId
+        document.getElementById('search-input').value = selectedCardId;
+
+        // Directly trigger the filter function after populating the search input
+        filterTasks(); // Call the function to filter tasks using the selectedCardId
+    } else {
+        console.log('No ID found in localStorage.');
+    }
+}
 
 // Function to render tasks dynamically
 function renderTasks(taskList) {
@@ -145,13 +176,13 @@ function renderTasks(taskList) {
                     ${
                         task.finishRewards?.items
                             ?.map(
-                                (reward) => `
-
+                                (reward) => ` 
                             <div class="reward-item">
                                 <img src="${reward.item?.imageLink || 'default-reward.png'}" alt="${reward.item?.name || 'Reward'}">
                                 <span>${reward.quantity || 0} x ${reward.item?.name || 'Unknown'}</span>
                             </div>
-                        `)
+                        `
+                            )
                             .join('') || '<p>No rewards listed.</p>'
                     }
                 </div>
@@ -208,27 +239,6 @@ function updateTasksPerPage() {
     }
 }
 
-document.getElementById('search-button').addEventListener('click', filterTasks);
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve the selectedCardId from localStorage
-    const selectedCardId = localStorage.getItem('selectedCardId');
-
-    if (selectedCardId) {
-        console.log(`Retrieved ID from localStorage in test.js: ${selectedCardId}`);
-
-        // Set the search input field value to the selectedCardId
-        document.getElementById('search-input').value = selectedCardId;
-
-        window.addEventListener("load", function () {
-            window.setTimeout(runAfterLoad, 100);
-        }, false);
-
-    } else {
-        console.log('No ID found in localStorage.');
-    }
-});
-
 // Function to filter tasks
 function filterTasks() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
@@ -238,7 +248,7 @@ function filterTasks() {
     // Filter tasks
     filteredTasks = tasks.filter((task) => {
         const matchesSearch =
-            task.name.toLowerCase().includes(searchQuery) || 
+            task.name.toLowerCase().includes(searchQuery) ||
             (task.trader?.name.toLowerCase() || '').includes(searchQuery);
 
         const matchesKappa = kappaRequired ? task.kappaRequired : true;
@@ -251,9 +261,10 @@ function filterTasks() {
     renderPaginatedTasks(); // Re-render the tasks based on the filtered list
 }
 
-function runAfterLoad() {
-    filterTasks();
-    console.log('runnning')
-}
+// Add event listener for search button
+document.getElementById('search-button').addEventListener('click', filterTasks);
 
-
+// Run the fetch operation and then handle the search
+document.addEventListener('DOMContentLoaded', () => {
+    fetchTasks(); // Fetch tasks when the page is loaded
+});

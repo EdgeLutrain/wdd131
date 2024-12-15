@@ -480,5 +480,5 @@ input::-webkit-inner-spin-button {
 }
 
 #tasks-container.container {
-  min-height: 6600px; /* Replace with appropriate value */
+  min-height: 2000px; /* Replace with appropriate value */
 }
