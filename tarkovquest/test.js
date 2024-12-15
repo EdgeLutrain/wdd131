@@ -2,7 +2,7 @@
 let tasks = []; // To store all tasks fetched from the API
 let filteredTasks = []; // To store filtered tasks for rendering
 let currentPage = 1; // Track the current page globally
-let tasksPerPage = 8; // Number of tasks to display per page
+let tasksPerPage = 4; // Number of tasks to display per page
 
 // Fetch and display tasks from the Tarkov API
 fetch('https://api.tarkov.dev/graphql', {
