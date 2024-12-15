@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
-
 :root {
   --primary-color: #9a8866;
   --secondary-color: #16191A;
@@ -7,7 +5,7 @@
   --accent2-color: #000000;
   --opcical1-color: rgba(177, 158, 109, 0.35);
   --opcical2-color: rgba(22, 25, 26, 0.7);
-  --heading-font: 'Aldrich', sans-serif;
+  --heading-font: 'Trebuchet MS', sans-serif;
   --paragraph-font: Tahoma, Helvetica, sans-serif;
 }
 
@@ -25,6 +23,15 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+
+}
+
+p {
+  font-size: 18px;
+}
+
+.info_box h2{
+  font-size: 30px;
 
 }
 
@@ -135,8 +142,8 @@ body {
 
 .footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -278,6 +285,7 @@ body {
 
 .task .task-image{
   width: 231px;
+  height: 140px;
 }
 .task .reward-item {
   display: flex;
@@ -365,11 +373,15 @@ body {
   justify-content: center;
   border: 3px solid var(--opcical1-color);
   padding: 3px;
+  height: 140px;
+  width: 90px;
   
 }
 
 .trader-giver img {
-  max-width: 64px;
+  
+  width: 64px;
+  height: 64px;
 }
 
 .filters {
@@ -401,7 +413,8 @@ body {
   margin-top: 20px;
   gap: 10px;
   flex-direction: column;
-
+  width: 100%;
+  height: auto;
 
 }
 .foward-and-back-butt{
@@ -447,4 +460,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.disclosure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
