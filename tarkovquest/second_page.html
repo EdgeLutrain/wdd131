@@ -16,7 +16,7 @@
     <link rel="preload" href="styles.css" as="style"/>
     <link rel="preload" href="test.js" as="script"/>
     <link rel="stylesheet" href="styles.css"/>
-    <script src="test.js" defer></script>
+    <script src="taskhandler.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -45,19 +45,25 @@
             </label>
             <button id="search-button">Search</button>
         </div>
-        <div id="pagination" class="pagination-controls"></div>
+        <div><p>Searching for Kappa or Lightkeeper Required check the box and click search</p></div>
         <div id="loading">Loading tasks...</div>
+        <div id="pagination" class="pagination-controls"></div>
+        
         <div id="task-list" class="task-list"></div>
         
     </div>
     
     <footer class="footer">
         <div class="disclosure">
-            <a class="info_box" href="https://tarkov.dev/">
-                <img src="https://tarkov.dev/favicon-32x32.png" alt="Tarkov Dev Logo"> 
-                <h2>Tarkov.Dev</h2> 
-            </a>
-            <p>All Data is Sourced From Tarkov.Devs API. Please check them and out as open source project!</p>
+            <h2>Special Thanks to</h2>
+            <a class="info_box" href="https://tarkov.dev/"><img src="https://tarkov.dev/favicon-32x32.png" alt="Tarkov Dev Logo"> <h2>Tarkov.Dev</h2> </a>
+            <p>All Data is Sourced From Tarkov.Devs API. Please check them and out as open source project for Tarkov relate info!</p>
+            <p>We don't work with them, but we appericate them opening up the API for public use.</p>
+            <br>
+            <p>- 2024 -</p>
+            <br>
+            <p>Game content and materials are trademarks and copyrights of Battlestate Games and its licensors. All rights reserved.</p>
+
         </div>
     </footer>
 </body>

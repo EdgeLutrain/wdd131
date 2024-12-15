@@ -114,6 +114,7 @@ function handleSearchOnLoad() {
 
         // Directly trigger the filter function after populating the search input
         filterTasks(); // Call the function to filter tasks using the selectedCardId
+        document.getElementById('search-input').value = ""
     } else {
         console.log('No ID found in localStorage.');
     }
