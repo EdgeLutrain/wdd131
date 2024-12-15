@@ -129,6 +129,14 @@ p {
   border-color: var(--primary-color);
 }
 
+.card:hover{
+  background-color: var(--primary-color);
+  border: 3px inset #000000 ;
+}
+
+.card:hover h2{
+  color: var(--accent2-color);
+}
 .card img {
   margin-bottom: 10px;
 }
@@ -418,6 +426,7 @@ p {
   height: auto;
 
 }
+
 .foward-and-back-butt{
   width: 32px;
   border: 3px inset var(--opcical1-color);
@@ -468,4 +477,8 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+}
+
+#tasks-container.container {
+  min-height: 6600px; /* Replace with appropriate value */
 }

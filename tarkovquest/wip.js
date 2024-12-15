@@ -70,23 +70,23 @@ fetch('https://api.tarkov.dev/graphql', {
                     imageLink
                 }
             }
-        }` 
+        }`,
     }),
 })
-.then((response) => response.json())
-.then((data) => {
-    const loading = document.getElementById('loading');
-    loading.style.display = 'none'; // Hide the loading message
+    .then((response) => response.json())
+    .then((data) => {
+        const loading = document.getElementById('loading');
+        loading.style.display = 'none'; // Hide the loading message
 
-    tasks = data.data.tasks; // Save tasks for search and filtering
-    filteredTasks = tasks; // Initially, show all tasks
-    renderPaginatedTasks(); // Initial render
-})
-.catch((error) => {
-    console.error('Error fetching data:', error);
-    const tasksContainer = document.getElementById('tasks-container');
-    tasksContainer.innerHTML = '<p>Failed to load tasks. Please try again later.</p>';
-});
+        tasks = data.data.tasks; // Save tasks for search and filtering
+        filteredTasks = tasks; // Initially, show all tasks
+        renderPaginatedTasks(); // Initial render
+    })
+    .catch((error) => {
+        console.error('Error fetching data:', error);
+        const tasksContainer = document.getElementById('tasks-container');
+        tasksContainer.innerHTML = '<p>Failed to load tasks. Please try again later.</p>';
+    });
 
 // Function to render tasks dynamically
 function renderTasks(taskList) {
@@ -146,12 +146,12 @@ function renderTasks(taskList) {
                         task.finishRewards?.items
                             ?.map(
                                 (reward) => `
-
                             <div class="reward-item">
                                 <img src="${reward.item?.imageLink || 'default-reward.png'}" alt="${reward.item?.name || 'Reward'}">
                                 <span>${reward.quantity || 0} x ${reward.item?.name || 'Unknown'}</span>
                             </div>
-                        `)
+                        `
+                            )
                             .join('') || '<p>No rewards listed.</p>'
                     }
                 </div>
@@ -208,27 +208,6 @@ function updateTasksPerPage() {
     }
 }
 
-document.getElementById('search-button').addEventListener('click', filterTasks);
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve the selectedCardId from localStorage
-    const selectedCardId = localStorage.getItem('selectedCardId');
-
-    if (selectedCardId) {
-        console.log(`Retrieved ID from localStorage in test.js: ${selectedCardId}`);
-
-        // Set the search input field value to the selectedCardId
-        document.getElementById('search-input').value = selectedCardId;
-
-        window.addEventListener("load", function () {
-            window.setTimeout(runAfterLoad, 100);
-        }, false);
-
-    } else {
-        console.log('No ID found in localStorage.');
-    }
-});
-
 // Function to filter tasks
 function filterTasks() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
@@ -238,7 +217,7 @@ function filterTasks() {
     // Filter tasks
     filteredTasks = tasks.filter((task) => {
         const matchesSearch =
-            task.name.toLowerCase().includes(searchQuery) || 
+            task.name.toLowerCase().includes(searchQuery) ||
             (task.trader?.name.toLowerCase() || '').includes(searchQuery);
 
         const matchesKappa = kappaRequired ? task.kappaRequired : true;
@@ -248,12 +227,29 @@ function filterTasks() {
     });
 
     currentPage = 1; // Reset to the first page
-    renderPaginatedTasks(); // Re-render the tasks based on the filtered list
+    renderPaginatedTasks();
 }
 
-function runAfterLoad() {
-    filterTasks();
-    console.log('runnning')
+// Add event listener for search button
+document.getElementById('search-button').addEventListener('click', filterTasks);
+
+// Function to filter tasks by ID
+function filterTasksById(cardId) {
+    // Filter tasks based on the selectedCardId
+    filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(cardId.toLowerCase()));
+
+    // Call the existing render function to display the filtered tasks
+    renderPaginatedTasks(); // This will render the filtered tasks
 }
 
+// Retrieve the selectedCardId from localStorage
+const selectedCardId = localStorage.getItem('selectedCardId');
 
+if (selectedCardId) {
+    console.log(`Retrieved ID from localStorage in test.js: ${selectedCardId}`);
+
+    // Perform the search directly with the retrieved ID
+    filterTasksById(selectedCardId); // Call the function to filter tasks using the selectedCardId
+} else {
+    console.log('No ID found in localStorage.');
+}
